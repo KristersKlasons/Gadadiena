@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mums</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(160deg, #fff5f7 0%, #ffe4ec 45%, #ffd6e0 100%);
+      color: #5c2a36;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      width: 100%;
+      max-width: 760px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: 0 20px 60px rgba(140, 68, 89, 0.18);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before, .card::after {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(255, 192, 203, 0.18);
+      z-index: 0;
+    }
+    .card::before { top: -60px; left: -60px; }
+    .card::after { bottom: -70px; right: -70px; }
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin: 0 0 16px;
+      line-height: 1.15;
+    }
+    h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      margin: 0 0 16px;
+      line-height: 1.2;
+    }
+    p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin: 0 0 16px;
+    }
+    .subtle {
+      opacity: 0.85;
+      font-size: 1rem;
+    }
+    .heart {
+      font-size: 2rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 14px 22px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+      box-shadow: 0 8px 20px rgba(140, 68, 89, 0.18);
+    }
+    button:hover {
+      transform: translateY(-1px);
+    }
+    .primary {
+      background: #d95a7a;
+      color: white;
+    }
+    .secondary {
+      background: #fff0f4;
+      color: #9b3c57;
+    }
+    .hidden { display: none; }
+    .message {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: #fff5f8;
+      color: #7a3247;
+      font-weight: 500;
+    }
+    .photo-wrap {
+      margin: 0 auto 20px;
+      width: min(280px, 85%);
+    }
+    .photo-wrap img {
+      width: 100%;
+      border-radius: 22px;
+      display: block;
+      box-shadow: 0 12px 28px rgba(140, 68, 89, 0.18);
+    }
+    .tiny {
+      font-size: 0.95rem;
+      opacity: 0.75;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="content">
+      <section id="step1">
+        <div class="heart">💐🤍</div>
+        <div class="photo-wrap" id="photoBlock">
+          <img src="YOUR_PHOTO_HERE" alt="Mūsu bilde" />
+          <div class="tiny">Te vari ielikt jūsu bildi.</div>
+        </div>
+        <h1>Vissirsnīgākie sveicieni Sieviešu dienā</h1>
+        <p>
+          gan no manis, gan no mazā dingeldangela.<br>
+          Tomēr mēs esam <strong>TAVI džeki</strong>.
+        </p>
+        <p class="subtle">Man tev ir vēl kaut kas svarīgs sakāms.</p>
+        <div class="btn-row">
+          <button class="primary" onclick="showStep(2)">Ejam tālāk!</button>
+        </div>
+      </section>
+
+      <section id="step2" class="hidden">
+        <div class="heart">✨</div>
+        <h2>Vai Tu zini, kas vēl šī ir par dienu?</h2>
+        <div class="btn-row">
+          <button class="primary" onclick="correctAnswer()">Mūsu otrā gada diena</button>
+          <button class="secondary" onclick="wrongAnswer()">Ziemassvētki</button>
+        </div>
+        <div id="answerBox" class="message hidden"></div>
+        <div class="btn-row hidden" id="continueFrom2">
+          <button class="primary" onclick="showStep(3)">Tālāk</button>
+        </div>
+      </section>
+
+      <section id="step3" class="hidden">
+        <div class="heart">🤍</div>
+        <h2>Paldies, ka esi ar mani</h2>
+        <p>
+          Paldies, ka esi bijusi ar mani šos divus gadus — jeb <strong>730 dienas</strong> vai <strong>17&nbsp;520 stundas</strong>.
+        </p>
+        <p>
+          Paldies, ka esi devusi prieciņu, disciplīnu un mīlestību.
+          Man ir patiess prieks būt tev blakus — tavā ikdienā, tavā izaugsmē un visā, ko mēs kopā piedzīvojam.
+        </p>
+        <p>
+          Es zinu, ka esi stiprs cipeļcālīts, un es ļoti gribu, lai tu esi ar mani.
+        </p>
+        <p>
+          Un jā — es saku, ka turpinām vēl nākamos miljons gadus.
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    function showStep(step) {
+      document.querySelectorAll('section').forEach(section => section.classList.add('hidden'));
+      document.getElementById('step' + step).classList.remove('hidden');
+    }
+
+    function correctAnswer() {
+      const answerBox = document.getElementById('answerBox');
+      const continueBtn = document.getElementById('continueFrom2');
+      answerBox.classList.remove('hidden');
+      continueBtn.classList.remove('hidden');
+      answerBox.innerHTML = '<strong>Jā, pareizi.</strong><br>Brīnišķīgi. Es saku, ka turpinām vēl nākamos miljons gadus.';
+    }
+
+    function wrongAnswer() {
+      const answerBox = document.getElementById('answerBox');
+      answerBox.classList.remove('hidden');
+      answerBox.innerHTML = 'Nēēē, šoreiz ne. Mēģini vēlreiz 🤍';
+    }
+
+    // Ja negribi pievienot bildi, vari atstāt tukšu src vai paslēpt bloku zemāk.
+    const photo = document.querySelector('#photoBlock img');
+    if (photo && photo.getAttribute('src') === 'YOUR_PHOTO_HERE') {
+      document.getElementById('photoBlock').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
